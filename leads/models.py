@@ -18,6 +18,9 @@ class Lead(models.Model):
     #Foreign Key for table must be above ^^^ without string, or as string within THIS dir
     agent=models.ForeignKey("Agent", on_delete=models.CASCADE) #CASCADE
 
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
+
 class Agent(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 

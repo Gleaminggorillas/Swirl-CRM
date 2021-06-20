@@ -9,7 +9,10 @@
 <body>
     <h1>Hello World!</h1>
     <p>This is the second page!</p>
-    {{ name }} {{ age }}
-    
+    <ul>
+        {% for lead in leads %}
+            <li>{{ lead }}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

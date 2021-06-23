@@ -21,7 +21,8 @@
     <h1>This is all of our leads.</h1>
     {% for lead in leads %}
         <div class="lead">
-            {{ <lead class="first_name"></lead> }}
+            {{ lead.first_name }} {{ lead.last_name }}. Age: {{ lead.age }}
         </div>    
+    {% endfor %}
 </body>
 </html>

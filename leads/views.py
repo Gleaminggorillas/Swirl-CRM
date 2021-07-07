@@ -1,11 +1,26 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
 from .models import Lead, Agent
 from .forms import LeadForm, LeadModelForm
+from django.views.generic import (TemplateView, ListView, 
+        DetailView, CreateView, UpdateView, DeleteView)
 # Create your views here.
+# Templates, such as TemplateView, are used to reduce boilerplate code
+
+# Remember CRUD
+# Create, Read, Update, Delete + List
+
+class LandingPageView(TemplateView):
+    template_name = "landing.html"
 
 def landing_page(request):
     return render(request, "landing.html")
+
+class LeadListView(ListView):
+    template_name = "leads/lead_list.html"
+    queryset = Lead.objects.all()
+    context_object_name = "leads"
+
 
 def lead_list(request):
     leads = Lead.objects.all()
@@ -14,12 +29,28 @@ def lead_list(request):
     }
     return render(request, 'leads/lead_list.html', context)
 
+
+class LeadDetailView(DetailView):
+    template_name="leads/lead_detail.html"
+    queryset = Lead.objects.all()
+    # Below, DetailView automatically grabs the "lead" object via the Primary Key 
+    context_object_name = "lead"
+
+
 def lead_detail(request, pk):
     lead = Lead.objects.get(id=pk)
     context = {
         "lead": lead
     }
     return render(request, "leads/lead_detail.html", context)
+
+
+class LeadCreateView(CreateView):
+    template_name="leads/lead_create.html"
+    form_class = LeadModelForm
+
+    def get_success_url(self):
+        return reverse("leads:lead-list")
 
 def lead_create(request):
 
@@ -39,6 +70,16 @@ def lead_create(request):
     }
     return render(request, "leads/lead_create.html", context)
 
+# django generic template UpdateView needs a queryset
+# filters model similiarly to the DetailView
+class LeadUpdateView(UpdateView):
+    template_name = "leads/lead_update.html"
+    queryset = Lead.objects.all()
+    form_class = LeadModelForm
+
+    def get_success_url(self):
+        return reverse("leads:lead-list")
+
 # pass only an instance from LeadModelForm, as only one piece of data 
 def lead_update(request, pk):
     lead = Lead.objects.get(id=pk)
@@ -57,6 +98,14 @@ def lead_update(request, pk):
     return render(request, "leads/lead_update.html", context)
 
 
+class LeadDeleteView(DeleteView):
+    template_name = "leads/lead_delete.html"
+    queryset = Lead.objects.all()
+
+    def get_success_url(self):
+        return reverse("leads:lead-list")
+
+
 def lead_delete(request, pk):
     lead = Lead.objects.get(id=pk)
     lead.delete()
@@ -64,7 +113,7 @@ def lead_delete(request, pk):
 
 
 """
-lead_update with standard forms, NOT Models
+lead_update with standard forms, NOT ModelForm
 
 def lead_update(request, pk):
     lead = Lead.objects.get(id=pk)

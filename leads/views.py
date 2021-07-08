@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse
+from django.core.mail import send_mail
 from django.http import HttpResponse
 from .models import Lead, Agent
 from .forms import LeadForm, LeadModelForm
@@ -51,6 +52,19 @@ class LeadCreateView(CreateView):
 
     def get_success_url(self):
         return reverse("leads:lead-list")
+
+    # overriding original form_valid function to send an email prior to returning the form 
+    def form_valid(self, form):
+        #TODO send email
+        # expect [Errno 61]
+        send_mail(
+            subject="A lead has been created",
+            message="Go to the site to see the new lead",
+            from_email="test@test.com",
+            recipient_list=["test2@test.com"]
+
+        )
+        return super(LeadCreateView, self).form_valid(form)
 
 def lead_create(request):
 

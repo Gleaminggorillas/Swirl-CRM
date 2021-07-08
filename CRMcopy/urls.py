@@ -16,9 +16,19 @@ Including another URLconf
 from leads.views import landing_page, LandingPageView
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', LandingPageView.as_view(), name="landing_page"),
     path('leads/', include('leads.urls', namespace="leads"))
-]
+
+] #+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+
+    # this is atypical.  Use DigitalOcean Spaces or AWS S3 in production
+    # as such, they are on the WEBS webserver, not our personal server
+    # a workaround such as the below conditional can be useful
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -138,6 +138,8 @@ AUTH_USER_MODEL = 'leads.User'
 # send email to backend for development env
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+LOGIN_REDIRECT_URL = '/leads'
+
 #TAILWIND_APP_NAME = 'app'
 
 #NPM_BIN_PATH = r"D:\nodejs\npm.cmd"

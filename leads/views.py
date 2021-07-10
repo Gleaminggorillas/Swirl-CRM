@@ -27,22 +27,23 @@ class SignupView(generic.CreateView):
 class LandingPageView(TemplateView):
     template_name = "landing.html"
 
+"""
 def landing_page(request):
     return render(request, "landing.html")
-
+"""
 class LeadListView(LoginRequiredMixin, generic.ListView):
     template_name = "leads/lead_list.html"
     queryset = Lead.objects.all()
     context_object_name = "leads"
 
-
+"""
 def lead_list(request):
     leads = Lead.objects.all()
     context = {
         "leads": leads
     }
     return render(request, 'leads/lead_list.html', context)
-
+"""
 
 class LeadDetailView(LoginRequiredMixin, generic.DetailView):
     template_name="leads/lead_detail.html"
@@ -50,14 +51,14 @@ class LeadDetailView(LoginRequiredMixin, generic.DetailView):
     # Below, DetailView automatically grabs the "lead" object via the Primary Key 
     context_object_name = "lead"
 
-
+"""
 def lead_detail(request, pk):
     lead = Lead.objects.get(id=pk)
     context = {
         "lead": lead
     }
     return render(request, "leads/lead_detail.html", context)
-
+"""
 
 class LeadCreateView(LoginRequiredMixin, generic.CreateView):
     template_name="leads/lead_create.html"
@@ -79,6 +80,7 @@ class LeadCreateView(LoginRequiredMixin, generic.CreateView):
         )
         return super(LeadCreateView, self).form_valid(form)
 
+"""
 def lead_create(request):
 
     form = LeadModelForm()
@@ -96,6 +98,7 @@ def lead_create(request):
         "form": form
     }
     return render(request, "leads/lead_create.html", context)
+"""
 
 # django generic template UpdateView needs a queryset
 # filters model similiarly to the DetailView
@@ -107,6 +110,7 @@ class LeadUpdateView(LoginRequiredMixin, generic.UpdateView):
     def get_success_url(self):
         return reverse("leads:lead-list")
 
+"""
 # pass only an instance from LeadModelForm, as only one piece of data 
 def lead_update(request, pk):
     lead = Lead.objects.get(id=pk)
@@ -123,7 +127,7 @@ def lead_update(request, pk):
         "lead": lead
     }
     return render(request, "leads/lead_update.html", context)
-
+"""
 
 class LeadDeleteView(LoginRequiredMixin, generic.DeleteView):
     template_name = "leads/lead_delete.html"
@@ -132,12 +136,12 @@ class LeadDeleteView(LoginRequiredMixin, generic.DeleteView):
     def get_success_url(self):
         return reverse("leads:lead-list")
 
-
+"""
 def lead_delete(request, pk):
     lead = Lead.objects.get(id=pk)
     lead.delete()
     return redirect("/leads")
-
+"""
 
 """
 lead_update with standard forms, NOT ModelForm

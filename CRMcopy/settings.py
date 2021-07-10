@@ -138,7 +138,7 @@ AUTH_USER_MODEL = 'leads.User'
 # send email to backend for development env
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-LOGIN_REDIRECT_URL = '/leads'
+LOGIN_REDIRECT_URL = '/login'
 
 #TAILWIND_APP_NAME = 'app'
 

@@ -7,6 +7,8 @@ from .models import Lead, Agent
 from .forms import LeadForm, LeadModelForm, CustomUserCreationForm
 from django.views.generic import (TemplateView, ListView, 
         DetailView, CreateView, UpdateView, DeleteView)
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 # Create your views here.
 # Templates, such as TemplateView, are used to reduce boilerplate code
 
@@ -28,7 +30,7 @@ class LandingPageView(TemplateView):
 def landing_page(request):
     return render(request, "landing.html")
 
-class LeadListView(ListView):
+class LeadListView(LoginRequiredMixin, generic.ListView):
     template_name = "leads/lead_list.html"
     queryset = Lead.objects.all()
     context_object_name = "leads"
@@ -42,7 +44,7 @@ def lead_list(request):
     return render(request, 'leads/lead_list.html', context)
 
 
-class LeadDetailView(DetailView):
+class LeadDetailView(LoginRequiredMixin, generic.DetailView):
     template_name="leads/lead_detail.html"
     queryset = Lead.objects.all()
     # Below, DetailView automatically grabs the "lead" object via the Primary Key 
@@ -57,7 +59,7 @@ def lead_detail(request, pk):
     return render(request, "leads/lead_detail.html", context)
 
 
-class LeadCreateView(CreateView):
+class LeadCreateView(LoginRequiredMixin, generic.CreateView):
     template_name="leads/lead_create.html"
     form_class = LeadModelForm
 
@@ -97,7 +99,7 @@ def lead_create(request):
 
 # django generic template UpdateView needs a queryset
 # filters model similiarly to the DetailView
-class LeadUpdateView(UpdateView):
+class LeadUpdateView(LoginRequiredMixin, generic.UpdateView):
     template_name = "leads/lead_update.html"
     queryset = Lead.objects.all()
     form_class = LeadModelForm
@@ -123,7 +125,7 @@ def lead_update(request, pk):
     return render(request, "leads/lead_update.html", context)
 
 
-class LeadDeleteView(DeleteView):
+class LeadDeleteView(LoginRequiredMixin, generic.DeleteView):
     template_name = "leads/lead_delete.html"
     queryset = Lead.objects.all()
 

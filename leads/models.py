@@ -25,7 +25,9 @@ class Lead(models.Model):
     age = models.IntegerField(default=0)
     #Foreign Keys are a one to many from the present class to the Foreign Key 
     #Foreign Key for table must be above ^^^ without string, or as string within THIS dir
-    agent=models.ForeignKey("Agent", on_delete=models.CASCADE) #CASCADE
+    organisation = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    agent = models.ForeignKey("Agent", null=True, blank=True, on_delete=models.SET_NULL) #CASCADE
+
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

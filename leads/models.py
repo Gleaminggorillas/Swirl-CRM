@@ -8,7 +8,8 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 
 class User(AbstractUser):
-    pass
+    is_organiser = models.BooleanField(default=True)
+    is_agent = models.BooleanField(default=False)
 
 
 class UserProfile(models.Model):
@@ -28,7 +29,6 @@ class Lead(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
-
 class Agent(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     organisation = models.ForeignKey(UserProfile, on_delete=models.CASCADE)

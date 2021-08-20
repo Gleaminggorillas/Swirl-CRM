@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse
 from django.views import generic
 from .models import Lead, Agent
-from .forms import LeadForm, LeadModelForm, CustomUserCreationForm
+from .forms import LeadForm, LeadModelForm, CustomUserCreationForm, AssignAgentForm
 from django.views.generic import (TemplateView, ListView, 
         DetailView, CreateView, UpdateView, DeleteView)
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -179,6 +179,15 @@ class LeadDeleteView(LoginRequiredMixin, generic.DeleteView):
 
 class AssignAgentView(OrganisorAndLoginRequiedMixin, generic.FormView):
     template_name = "leads/assign_agent.html"
+    form_class = AssignAgentForm
+
+    def get_form_kwargs(self):
+        return {
+            "request": self.request
+        }
+
+    def get_success_url(self):
+        return reverse("leads:lead-list")
 
 """
 def lead_delete(request, pk):

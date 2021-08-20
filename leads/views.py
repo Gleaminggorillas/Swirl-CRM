@@ -3,7 +3,7 @@ from django.core.mail import send_mail
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponse
 from django.views import generic
-from .models import Lead, Agent
+from .models import Lead, Agent, Category
 from .forms import LeadForm, LeadModelForm, CustomUserCreationForm, AssignAgentForm
 from django.views.generic import (TemplateView, ListView, 
         DetailView, CreateView, UpdateView, DeleteView)
@@ -197,6 +197,26 @@ class AssignAgentView(OrganisorAndLoginRequiedMixin, generic.FormView):
         lead.agent = agent
         lead.save()
         return super(AssignAgentView, self).form_valid(form)
+
+
+class CategoryListView(LoginRequiredMixin, generic.ListView):
+    template_name = "leads/category_list.html"
+
+    def get_queryset(self):
+        user = self.request.user
+
+        # initial queryset of leads for the organisation
+        if user.is_organiser:
+            queryset = Category.objects.filter(
+                organisation=user.userprofile,
+            )
+        else:
+            queryset = Category.objects.filter(
+                organisation=user.agent.organisation,
+            )
+        return queryset
+
+
 
 """
 def lead_delete(request, pk):

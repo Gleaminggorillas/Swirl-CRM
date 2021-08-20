@@ -35,4 +35,7 @@ class AssignAgentForm(forms.Form):
     agent = forms.ModelChoiceField(queryset=Agent.objects.none())
 
     def __init__(self, *args, **kwargs):
-        print(kwargs)
+        request = kwargs.pop("request")
+        agents = Agent.objects.filter(organistation=request.user.userprofile)
+        super(AssignAgentForm, self).__init__(*args, **kwargs)
+        self.fields["agent"].queryset = agents

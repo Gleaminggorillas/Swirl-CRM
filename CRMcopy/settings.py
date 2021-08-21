@@ -32,8 +32,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+
+    # Local Apps
     'agents',
     'leads',
+
+    # Third-Party Apps
+    'crispy_forms',
+    'crispy_tailwind',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -140,6 +147,9 @@ AUTH_USER_MODEL = 'leads.User'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 LOGIN_REDIRECT_URL = '/login'
+
+CRISPY_ALLOWED_TEMPLATE_PACK = 'tailwind'
+CRISPY_TEMPLATE_PACK = 'tailwind'
 
 #TAILWIND_APP_NAME = 'app'
 

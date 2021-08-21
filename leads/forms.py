@@ -36,7 +36,7 @@ class AssignAgentForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         request = kwargs.pop("request")
-        agents = Agent.objects.filter(organistation=request.user.userprofile)
+        agents = Agent.objects.filter(organisation=request.user.userprofile)
         super(AssignAgentForm, self).__init__(*args, **kwargs)
         self.fields["agent"].queryset = agents
 

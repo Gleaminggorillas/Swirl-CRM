@@ -103,6 +103,9 @@ class LeadCreateView(OrganisorAndLoginRequiedMixin, generic.CreateView):
     def form_valid(self, form):
         #TODO send email
         # expect [Errno 61]
+        lead = form.save(commit=False)
+        lead.organisation = self.request.user.userprofile
+        lead.save()
         send_mail(
             subject="A lead has been created",
             message="Go to the site to see the new lead",

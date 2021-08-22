@@ -129,7 +129,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
 STATICFILES_DIRS = [
     BASE_DIR / "static",  
 ]
@@ -146,7 +145,9 @@ AUTH_USER_MODEL = 'leads.User'
 # send email to backend for development env
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-LOGIN_REDIRECT_URL = '/login'
+LOGIN_REDIRECT_URL = '/leads'
+LOGIN_URL = "/login"
+LOGOUT_REDIRECT_URL = "/"
 
 CRISPY_ALLOWED_TEMPLATE_PACK = 'tailwind'
 CRISPY_TEMPLATE_PACK = 'tailwind'

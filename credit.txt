@@ -1,0 +1,11 @@
+SOURCES
+
+JustDjango - Getting Started Tutorial
+    https://www.youtube.com/watch?v=fOukA4Qh9QA
+    *Great tutorial for in-depth Django
+
+IMAGES
+
+Home Page Image
+    Photo by <a href="https://unsplash.com/@lincyoon?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lincoln Yoon</a> on <a href="https://unsplash.com/images/stock?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  

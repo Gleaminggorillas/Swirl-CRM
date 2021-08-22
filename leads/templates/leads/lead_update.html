@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load tailwind_filters %}
+{% load static %}
 
 {% block content %}
 
@@ -29,7 +30,7 @@
           <button type="button" class="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded" onclick="location.href='{% url 'leads:lead-delete' lead.pk %}'">Delete Lead</button>
         </div>
       </div>
-      <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="https://dummyimage.com/400x400">
+      <img alt="ecommerce" class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded" src="{% static 'images/CRM-home-image-lincoln-yoon-unsplash.jpg' %}">
     </div>
   </div>
 </section>

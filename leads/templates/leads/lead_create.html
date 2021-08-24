@@ -4,10 +4,12 @@
 {% block content %}
 
 <div class="max-w-lg mx-auto">
-    <a class="hover:text-blue-500" href="{% url 'leads:lead-list' %}">Go back to leads</a>
-    <div class="py-5 border-t border-gray-200">
+
+    <div class="pb-5 border-b border-gray-200">
+        <a class="hover:text-blue-500" href="{% url 'leads:lead-list' %}">Go back to leads</a>
     </div>
-    <h1 class="text-4xl text-gray-800">Create a new lead</h1>
+    <div class="py-5">
+        <h1 class="text-4xl text-gray-800">Create a new lead</h1>
     <form class="mt-5" method="post">
         {% csrf_token %}
         {{ form|crispy }}
@@ -15,6 +17,7 @@
                 Submit
             </button> 
     </form>
+    </div>
 </div>
 {% endblock content %}
 

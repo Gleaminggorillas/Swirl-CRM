@@ -10,7 +10,7 @@ from django.core.mail import send_mail
 
 
 class AgentListView(OrganisorAndLoginRequiedMixin, generic.ListView):
-    template_name = 'agents/agent_list.html'
+    template_name = 'agents/agent_list_2.html'
 
     def get_queryset(self):
         organisation = self.request.user.userprofile

@@ -32,7 +32,7 @@ def landing_page(request):
     return render(request, "landing.html")
 """
 class LeadListView(OrganisorAndLoginRequiedMixin, generic.ListView):
-    template_name = "leads/lead_list.html"
+    template_name = "leads/lead_list_2.html"
     context_object_name = "leads"
 
     def get_queryset(self):

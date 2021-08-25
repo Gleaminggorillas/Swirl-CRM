@@ -38,7 +38,7 @@ class AgentCreateView(OrganisorAndLoginRequiedMixin, generic.CreateView):
         # agent.save()
         send_mail(
             subject="You are invited to be an agent",
-            message="You were added as an agent on CRMCopy.  Login to begin the endless, soulless, 9-to-5.  Please don't try to escape.  Excuses are intolerable; you will be summarily executed.  Enjoy your stay!  Loving regards, the CRMCopy Team.",
+            message="You were added as an agent on Swirl-CRM.  Login to begin the endless, soulless, 9-to-5.  Please don't try to escape.  Excuses are intolerable; you will be summarily executed.  Enjoy your stay!  Loving regards, the Swirl-CRM Team.",
             from_email="admin@test.com",
             recipient_list=[user.email]
             )

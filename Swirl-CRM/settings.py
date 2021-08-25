@@ -76,7 +76,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'CRMcopy.urls'
+ROOT_URLCONF = 'Swirl-CRM.urls'
 
 TEMPLATES = [
     {
@@ -94,7 +94,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'CRMcopy.wsgi.application'
+WSGI_APPLICATION = 'Swirl-CRM.wsgi.application'
 
 
 # Database
